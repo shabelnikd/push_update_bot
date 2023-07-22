@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function formatDateTime(timestamp) {
     const date = new Date(timestamp);
-    return `${date.toLocaleDateString().replace('/', '.')} - ${date.toLocaleTimeString()}`;
+    return `${date.toLocaleDateString().replaceAll('/', '.')} - ${date.toLocaleTimeString()}`;
 }
 
 async function handleWebhook(req) {
