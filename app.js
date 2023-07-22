@@ -70,7 +70,7 @@ router.post("/wh/", function (req, res) {
     console.log(req.body);
 
     try {
-        handleWebhook(req).then(r => "")
+        handleWebhook(req.body).then(r => "")
         runScript()
     } catch (e) {
         console.error("Error processing request message:", e);
