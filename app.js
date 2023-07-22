@@ -27,13 +27,13 @@ function formatCommits(commits) {
 async function handleWebhook(req) {
     const { repository, sender, head_commit } = req;
 
-    const message = `🚀 ${sender.login} pushed to ${repository.name}\n` +
+    const message = `🚀 ${head_commit.author.name} (${sender.login}) was pushed to ${repository.full_name}\n` +
         `At ${formatDateTime(head_commit.timestamp)}\n` +
         `With ${head_commit.message}\n` +
         (head_commit.added.length ? `Added:\n${formatCommits(head_commit.added)}\n` : '') +
         (head_commit.removed.length ? `Removed:\n${formatCommits(head_commit.removed)}\n` : '') +
         (head_commit.modified.length ? `Modified:\n${formatCommits(head_commit.modified)}\n` : '');
-        console.log(head_commit)
+    console.log(head_commit)
     console.log(message)
 
     for (const chatId of white_list) {
