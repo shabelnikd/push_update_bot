@@ -33,6 +33,7 @@ async function handleWebhook(req) {
         (head_commit.added.length ? `Added:\n${formatCommits(head_commit.added)}\n` : '') +
         (head_commit.removed.length ? `Removed:\n${formatCommits(head_commit.removed)}\n` : '') +
         (head_commit.modified.length ? `Modified:\n${formatCommits(head_commit.modified)}\n` : '');
+        console.log(head_commit)
     console.log(message)
 
     for (const chatId of white_list) {
