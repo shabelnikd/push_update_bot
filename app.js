@@ -29,8 +29,6 @@ async function handleWebhook(req) {
         (head_commit.added.length ? `Added:\n${head_commit.added}\n` : '') +
         (head_commit.removed.length ? `Removed:\n${head_commit.removed}\n` : '') +
         (head_commit.modified.length ? `Modified:\n${head_commit.modified}\n` : '');
-    console.log(head_commit.modified)
-    console.log(message)
 
     for (const chatId of white_list) {
         await bot.sendMessage(chatId, message)
@@ -66,7 +64,6 @@ function runScript() {
 }
 
 router.post("/wh/", function (req, res) {
-    console.log(req.body);
 
     try {
         handleWebhook(req.body).then(() => "")
