@@ -52,7 +52,7 @@ function runScript() {
                     .catch(error => console.error(`Error sending message to ${chatId}: ${error.message}`));
             }
         } else {
-            const message = `And last push was build successfully\nBuild was took ${Date.now() - a_time / 1000} s.`
+            const message = `And last push was build successfully\nBuild was took ${(Date.now() - a_time) / 1000} s.`
             console.log(message)
             for (const chatId of white_list) {
                 await bot.sendMessage(chatId, message)
