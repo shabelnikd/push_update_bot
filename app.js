@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function formatDateTime(timestamp) {
     const date = new Date(timestamp);
-    return `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
+    return `${date.toLocaleTimeString().replace('/', '.')} - ${date.toLocaleTimeString()}`;
 }
 
 function formatCommits(commits) {
@@ -29,11 +29,11 @@ async function handleWebhook(req) {
 
     const message = `🚀 ${head_commit.author.name} (${sender.login}) was pushed to ${repository.full_name}\n` +
         `At ${formatDateTime(head_commit.timestamp)}\n` +
-        `With ${head_commit.message}\n` +
+        `With a commit message:\n${head_commit.message}\n` +
         (head_commit.added.length ? `Added:\n${formatCommits(head_commit.added)}\n` : '') +
         (head_commit.removed.length ? `Removed:\n${formatCommits(head_commit.removed)}\n` : '') +
         (head_commit.modified.length ? `Modified:\n${formatCommits(head_commit.modified)}\n` : '');
-    console.log(head_commit)
+    console.log(head_commit.modified)
     console.log(message)
 
     for (const chatId of white_list) {
